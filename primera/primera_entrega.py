@@ -3,7 +3,11 @@ usuarios = {}
 
 def registrar_usuario():
     usuario = input("Ingrese su nombre de usuario: ")
-    contraseña = input("Ingrese su contraseña: ")
+    contraseña = input(
+        "Ingrese su contraseña (debe tener al menos 6 caracteres): ")
+    if len(contraseña) < 8:
+        print("La contraseña debe tener al menos 8 caracteres.")
+        return
     if usuario in usuarios:
         print("El usuario ya existe, ingrese otro")
     else:
