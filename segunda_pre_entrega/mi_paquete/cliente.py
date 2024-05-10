@@ -5,6 +5,7 @@ class Cliente():
         self.edad = edad
         self.email = email
         self.compras = []
+        self.favoritos = []
 
     def __str__(self):
         return f"Cliente: {self.nombre} {self.apellido}"
@@ -25,13 +26,27 @@ class Cliente():
         else:
             print(f"{self.nombre} no ha realizado ninguna compra aún")
 
+    def agregar_a_favoritos(self, producto):
+        self.favoritos.append(producto)
+        print(f"{producto} ha sido agregado a tus favoritos.")
+
+    def mostrar_favoritos(self):
+        if self.favoritos:
+            print(f"\nProductos favoritos de {self.nombre}:")
+            for producto in self.favoritos:
+                print(producto)
+        else:
+            print(f"{self.nombre} no tiene ningún producto favorito aún.")
+
     def menu_cliente(self):
         while True:
             print("\nOpciones: ")
             print("1. Obtener información del cliente")
             print("2. Comprar")
             print("3. Mostrar compra")
-            print("4. Salir")
+            print("4. Agregar producto a favoritos")
+            print("5. Mostrar productos favoritos")
+            print("6. Salir")
             opcion = input("Ingrese una opción: ")
 
             if opcion == "1":
@@ -45,6 +60,12 @@ class Cliente():
             elif opcion == "3":
                 self.mostrar_compras()
             elif opcion == "4":
+                producto = input(
+                    "Ingrese el producto que desea agregar a favoritos: ")
+                self.agregar_a_favoritos(producto)
+            elif opcion == "5":
+                self.mostrar_favoritos()
+            elif opcion == "6":
                 print("Hasta la próxima.")
                 break
             else:
