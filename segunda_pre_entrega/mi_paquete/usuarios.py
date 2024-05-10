@@ -53,7 +53,7 @@ while (True):
     elif opciones == "3":
         login_usuario()
     elif opciones == "4":
-        print("Hasta la próxima ")
+        print("Hasta la próxima.\n")
         break
     else:
         print("Opción no valida. Por favor, intente nuevamente")
