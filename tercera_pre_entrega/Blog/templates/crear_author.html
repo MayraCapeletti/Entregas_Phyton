@@ -1,0 +1,7 @@
+{% extends 'padre.html' %} {% block contenidoQueCambia %}
+<h1>Crear un Nuevo Autor</h1>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Crear Autor</button>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'padre.html' %} {% block contenidoQueCambia %}
+
+<h2>Lista de Posts</h2>
+<ul>
+  {% for post in lista_post %}
+  <li>
+    {{ post.titulo }} - {{ post.autor.nombre }} - {{ post.categoria.nombre }}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

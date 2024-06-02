@@ -1,0 +1,7 @@
+{% extends 'padre.html' %} {% block contenidoQueCambia %}
+<h1>Buscar un post por autor</h1>
+<form action="{% url 'buscarAutor' %}" method="get">
+  <p><input type="text" name="autor" /></p>
+  <button type="submit">Buscar</button>
+</form>
+{% endblock %}

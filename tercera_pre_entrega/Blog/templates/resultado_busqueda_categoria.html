@@ -1,0 +1,14 @@
+n{% extends 'padre.html' %} {% block contenidoQueCambia %}
+<h1>Resultados de la búsqueda por categoria</h1>
+{% if categoria %}
+<p>Post en la categoría {{ categoria.nombre }}:</p>
+<ul>
+  {% for post in results %}
+  <li>{{ post.titulo }} - {{ post.autor }}</li>
+  {% empty %}
+  <li>No se encontraron posts</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>{{ mensaje }}</p>
+{% endif %} {% endblock %}

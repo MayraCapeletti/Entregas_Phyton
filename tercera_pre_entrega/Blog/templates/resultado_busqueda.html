@@ -1,0 +1,11 @@
+{% extends 'padre.html' %} {% block contenidoQueCambia %}
+<h1>Resultados de la búsqueda</h1>
+<ul>
+  {% for post in results %}
+  <li>{{ post.titulo }} - {{ post.contenido }}</li>
+  {% empty %}
+  <li>No se encontraron posts</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
