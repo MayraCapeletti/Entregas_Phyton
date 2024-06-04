@@ -1,8 +1,12 @@
-{% extends 'padre.html' %} {% block contenidoQueCambia %}
-<h1>Crear un Nuevo Post</h1>
-<form action="{% url 'crear_post' %}" method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Crear Post</button>
-</form>
+{% extends 'padre.html' %}
 
+{% block contenidoQueCambia %}
+<div class="form-container">
+    <h1 class= "titulo-form">Crear un Nuevo Post</h1>
+    <form action="{% url 'crear_post' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn-primary" type="submit">Crear Post</button>
+    </form>
+</div>
 {% endblock %}

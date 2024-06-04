@@ -7667,7 +7667,10 @@ textarea.form-control-lg {
 }
 
 .mb-5 {
-  margin-bottom: 3rem !important;
+  margin-bottom: 30rem !important;
+  margin-right: 1rem;
+  color: #4d6160 !important;
+  
 }
 
 .mb-auto {
@@ -10838,24 +10841,6 @@ textarea.form-control-lg {
   font-size: 4.5rem;
 }
 
-header.masthead {
-  position: relative;
-  background-color: #343a40;
-  background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
-  background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-header.masthead:before {
-  content: "";
-  position: absolute;
-  background-color: #1c375e;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.5;
-}
 header.masthead h1, header.masthead .h1 {
   font-size: 2rem;
 }

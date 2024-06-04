@@ -1,5 +1,6 @@
-{% extends 'padre.html' %} {% block contenidoQueCambia %}
-<h1>Resultados de la búsqueda</h1>
+{% extends 'padre.html' %} 
+{% block contenidoQueCambia %}
+<h1 class="titulo-post">Resultados de la búsqueda</h1>
 <ul>
   {% for post in results %}
   <li>{{ post.titulo }} - {{ post.contenido }}</li>
