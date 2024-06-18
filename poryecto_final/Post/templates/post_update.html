@@ -1,0 +1,15 @@
+{% extends 'padre.html' %}
+{% block bloque_titulo %}Actualizar post{% endblock %}
+
+{% block bloque_header %}
+<!-- No header content for About page -->
+{% endblock %}
+
+{% block contenidoQueCambia %}
+    <h1>Actualizar Post</h1>
+    <form method="post" action="{% url 'ActualizaPost' post.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Actualizar</button>
+    </form>
+{% endblock %}

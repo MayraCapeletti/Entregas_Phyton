@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+{% block bloque_titulo %}Crear post{% endblock %}
+
+{% block bloque_header %}
+<!-- No header content for About page -->
+{% endblock %}
+
+{% block bloque_nav_items %}
+    
+    <li class="nav-item"><a class="nav-link" href="{% url 'CreaPost' %}">Nuevo Post</a></li>
+    
+{% endblock bloque_nav_items %}
+
+{% block contenidoQueCambia %}
+    <h1>Crear Post</h1>
+    <form method="post"  action="{% url 'CreaPost' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Crear</button>
+        <a class="btn btn-outline-danger fst-italic" href="{% url 'ver_posts' %}" role="button"><i class="bi bi-x-circle"></i> Cancelar</a>
+    </form>
+{% endblock %}

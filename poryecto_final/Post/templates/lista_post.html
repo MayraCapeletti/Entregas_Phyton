@@ -1,0 +1,50 @@
+{% extends 'padre.html' %}
+{% block bloque_titulo %}Lista de post{% endblock %}
+
+{% block bloque_nav_items %}
+    <!-- Habilita modificación del post SÓLO para su autor -->
+    {% if request.user.is_authenticated and post.autor == request.user %}
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ActualizaPost' post.id %}"><i class="bi bi-pencil"></i> Editar</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'EliminaPost' post.id %}"><i class="bi bi-trash"></i> Eliminar</a></li>
+    {% endif %}
+{% endblock bloque_nav_items %}
+
+{% block bloque_header %}
+<header class="post" style="background-image: url('{{ post.imagen.url }}')">
+  <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="post-heading">
+                  <h1>{{ post.title }}</h1>
+                  <h2 class="subheading">{{ post.subtitle }}</h2>
+                  <span class="meta">
+                      Posteado por {{ post.author }} el {{ post.created_at }}.
+                  </span>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block contenidoQueCambia %}
+<h1>Lista de Cursos</h1>
+<ul> 
+  {% for post in posts %}
+    <li>
+      <a href="{% url 'DetallePost' post.id %}">
+        {{post}}
+      </a>
+    </li>
+    <div style="display: flex; column-gap: 5px;">
+      <button>
+        <a href="{% url 'ActualizaPost' post.id %}"> Actualizar </a>
+      </button>
+      <button>
+        <a href="{% url 'EliminaPost' post.id %}"> Eliminar </a>
+      </button>
+    </div>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'CreaPost' %}">Crear Post</a>
+{% endblock %}

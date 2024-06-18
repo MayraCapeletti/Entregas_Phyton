@@ -1,0 +1,65 @@
+ body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+header {
+    background: url(../assets/img/computer-4484282_1280.jpg)no-repeat ;
+    background-size: 100%;
+    color: white; /* Para asegurarte de que el texto sea legible */
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    position: relative;
+    width: 100% 
+}
+
+ 
+
+.container.my-auto {
+    flex: 1 0 auto;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - 160px);
+}
+header {
+    margin-bottom: 0;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.p_bienvenido{
+    color: white;
+}
+
+/* styles.css */
+
+a.back{
+    margin-bottom: 20px;
+    font-size: 1,5rem;
+}
+
+.comment, .comment-form {
+    max-width: 300px;
+    
+}
+
+.comment-form {
+    margin-top: 20px;
+}
+.comments, .comentario, hr{
+    margin-left:-40px;
+    margin-top: 20px;
+
+}

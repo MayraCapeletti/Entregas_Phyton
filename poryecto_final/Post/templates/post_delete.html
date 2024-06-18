@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+{% block bloque_titulo %}Eliminar post{% endblock %}
+
+{% block bloque_header %}
+<!-- No header content for About page -->
+{% endblock %}
+
+{% block contenidoQueCambia %}
+  
+<form action="{% url 'EliminaPost' post.id %}" method="post">{% csrf_token %}
+
+  <p>Estas seguro que desea eliminar el curso "{{ post.title }}"?</p>
+
+  <button type="submit"> Confirmar </button>
+  <button><a href="{% url 'ListaPost' %}"> Cancelar </a> </button>
+
+</form>
+
+{% endblock contenidoQueCambia %}

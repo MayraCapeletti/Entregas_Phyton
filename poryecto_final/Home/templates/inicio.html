@@ -1,0 +1,14 @@
+{% extends 'padre.html' %}
+
+{% block contenidoQueCambia %}
+<div class="container text-center my-5">
+    
+    {% if mensaje %}
+    <div class="alert alert-success" role="alert">
+        {{mensaje}}
+    </div>
+        
+    {% endif %}
+    
+</div>
+{% endblock %}

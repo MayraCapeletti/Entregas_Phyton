@@ -1,0 +1,18 @@
+{% extends 'padre.html' %} 
+{% block bloque_titulo %}Resutado de la búsqueda{% endblock %}
+
+{% block bloque_header %}
+<!-- No header content for About page -->
+{% endblock %}
+
+{% block contenidoQueCambia %}
+<h1 class="titulo-post">Resultados de la búsqueda</h1>
+<ul>
+  {% for post in results %}
+  <li>{{ post.title }} - {{ post.subtitle }}</li>
+  {% empty %}
+  <li>No se encontraron posts</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
