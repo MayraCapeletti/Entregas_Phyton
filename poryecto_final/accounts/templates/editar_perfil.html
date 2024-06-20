@@ -1,20 +1,25 @@
 {% extends 'padre.html' %}
-{% block bloque_header %} {% endblock %}
+{% load crispy_forms_tags %}
+{% block bloque_header %}{% endblock %}
 {% block bloque_titulo %}
- Editar Perfil
+    Editar Perfil
 {% endblock bloque_titulo %}
 {% block contenidoQueCambia %}
-<div class="container">
-    <h2>Editar Perfil</h2>
+<div class="container my-5">
+    <h2 class="card-title text-center mb-4">Editar Perfil</h2>
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
     {% endif %}
-    <form method="POST" enctype="multipart/form-data" action="{% url 'editar_perfil' %}">
-        {% csrf_token %}
-        {{ miFormulario.as_p }}
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'editar_perfil' %}" class="shadow p-4 rounded bg-light">
+                {% csrf_token %}
+                {{ miFormulario|crispy}}
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock contenidoQueCambia %}

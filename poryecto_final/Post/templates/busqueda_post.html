@@ -1,16 +1,21 @@
-{% extends 'padre.html' %} 
-{% block bloque_titulo %}Busqueda{% endblock %}
+{% extends 'padre.html' %}
+
+{% block bloque_titulo %}Búsqueda{% endblock %}
 
 {% block bloque_header %}
 <!-- No header content for About page -->
 {% endblock %}
 
 {% block contenidoQueCambia %}
-<h1 class="titulo-busqueda_post">Buscar un post</h1>
-<div class="form-container">
-<form action="{% url 'buscarPost' %}" method="get">
-  <p><input type="text" name="post" /></p>
-  <button type="submit">Buscar</button>
-</form>
+<div class="container mt-5">
+    <h1 class="titulo-busqueda-post text-center mb-4">Buscar un post</h1>
+    <div class="form-container d-flex justify-content-center">
+        <form action="{% url 'buscarPost' %}" method="get" class="search-form">
+            <div class="input-group">
+                <input type="text" name="post" class="form-control" placeholder="Introduce el título del post">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

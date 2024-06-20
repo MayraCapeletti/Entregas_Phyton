@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Post, Comment
 from django.views.generic import ListView
@@ -7,9 +7,11 @@ from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CommentForm
 from django.views.generic.edit import FormMixin
+from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 
 
-# Create your views here.
+
 def ver_posts(request):
     posts = Post.objects.all().order_by('id')
     return render(request, 'ver_posts.html', { 'posts' : posts })
@@ -36,17 +38,25 @@ class PostDetail(FormMixin, DetailView):
         if form.is_valid():
             new_comment = form.save(commit=False)
             new_comment.post = self.object
+            new_comment.active = True
             new_comment.save()
+            messages.success(request, 'Comentario agregado con éxito.')
             return self.form_valid(form)
         else:
+            messages.error(request, 'Por favor, corrija los errores a continuación.')
             return self.form_invalid(form)
-
+        
+ 
   def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = self.get_form()
         context['comments'] = self.object.comments.filter(active=True)
+        post = self.object
+        comments = post.comments.filter(active=True)
+        context['comments'] = comments
+       
         return context
-
+        
 class PostCreate(LoginRequiredMixin, CreateView):
 
   model = Post
@@ -80,7 +90,7 @@ def busqueda_post(req):
 def buscar(req):
     if 'post' in req.GET:
         query = req.GET['post']
-        results = Post.objects.filter(titulo__icontains=query)
+        results = Post.objects.filter(title__icontains=query)
         return render(req, "resultado_busqueda.html", {"results": results})
     else:
         return render(req, "inicio.html", {"mensaje": "No enviaste el dato"})

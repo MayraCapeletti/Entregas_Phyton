@@ -1,18 +1,24 @@
-{% extends 'padre.html' %} 
-{% block bloque_titulo %}Resutado de la búsqueda{% endblock %}
+{% extends 'padre.html' %}
+
+{% block bloque_titulo %}Resultados de la búsqueda{% endblock %}
 
 {% block bloque_header %}
-<!-- No header content for About page -->
+<!-- No header content for search results page -->
 {% endblock %}
 
 {% block contenidoQueCambia %}
-<h1 class="titulo-post">Resultados de la búsqueda</h1>
-<ul>
-  {% for post in results %}
-  <li>{{ post.title }} - {{ post.subtitle }}</li>
-  {% empty %}
-  <li>No se encontraron posts</li>
-  {% endfor %}
-</ul>
-
+<div class="container mt-5">
+    <h1 class="titulo-post text-center mb-4">Resultados de la búsqueda</h1>
+    <div class="resultados-busqueda">
+        <ul class="list-group">
+            {% for post in results %}
+                <li class="list-group-item">
+                    <a href="{% url 'DetallePost' post.id %}" class="resultado-enlace">{{ post.title }} - {{ post.subtitle }}</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-center">No se encontraron posts</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

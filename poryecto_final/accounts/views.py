@@ -1,13 +1,14 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import  UserEditForm, FormularioCambiarPassword, FormularioRegistro
+from .forms import  UserEditForm, FormularioCambiarPassword, FormularioRegistro, AvatarForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.urls import reverse_lazy
+from .models import Avatar
 
 def login_view(req):
   if req.method == 'POST':
@@ -47,7 +48,16 @@ def register(req):
     
 @login_required
 def ver_perfil(request):
-    return render(request, 'perfil.html')
+    try:
+        avatar = request.user.avatar
+    except Avatar.DoesNotExist:
+        avatar = None
+
+    context = {
+        'avatar': avatar,
+    }
+    return render(request, 'perfil.html', context)
+    
 
 @login_required()
 def editar_perfil(req):
@@ -93,5 +103,55 @@ def cambiar_password(req):
 
 @login_required
 def cerrar_sesion(request):
+    messages.add_message(request, messages.SUCCESS, '¡Has cerrado sesión! ¡Hasta luego!')
     logout(request)
-    return redirect('home')
+    return redirect('inicio')
+
+def agregar_avatar(request):
+    avatar = Avatar.objects.filter(user=request.user).first()
+    if request.method == 'POST':
+        avatar_form = AvatarForm(request.POST, request.FILES)
+        if avatar_form.is_valid():
+            if avatar:
+                avatar.imagen = avatar_form.cleaned_data['imagen']
+                messages.success(request, "Avatar actualizado con éxito")
+            else:
+                avatar = Avatar(user=request.user, imagen=avatar_form.cleaned_data['imagen'])
+                messages.success(request, "Avatar cargado con éxito")
+            avatar.save()
+            return redirect('inicio')  # Ajusta 'inicio' a la URL de tu página de inicio
+        else:
+            messages.error(request, "Datos inválidos")
+    else:
+        avatar_form = AvatarForm()
+
+    return render(request, "agregar_avatar.html", {"avatar_form": avatar_form, "avatar": avatar})
+
+@login_required
+def eliminar_cuenta(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+        messages.success(request, 'Tu cuenta ha sido eliminada con éxito.')
+        return redirect('home')
+    return render(request, 'confirmar_eliminacion.html')
+
+User = get_user_model()
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def eliminar_cualquier_cuenta(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.method == 'POST':
+        if user.is_staff:
+            messages.error(request, 'No puedes eliminar la cuenta de otro miembro del staff.')
+        else:
+            user.delete()
+            messages.success(request, 'La cuenta ha sido eliminada con éxito.')
+        return redirect('listar_usuarios')
+    return render(request, 'confirmar_eliminacion.html', {'user_to_delete': user})
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def listar_usuarios(request):
+    users = User.objects.all()
+    return render(request, 'listar_usuarios.html', {'users': users})

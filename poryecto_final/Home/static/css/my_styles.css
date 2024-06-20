@@ -1,11 +1,11 @@
- body {
+body {
     height: 100%;
     margin: 0;
     padding: 0;
-    
 }
+
 header {
-    background: url(../assets/img/computer-4484282_1280.jpg)no-repeat ;
+    background: url(../assets/img/computer-4484282_1280.jpg) no-repeat;
     background-size: 100%;
     color: white; /* Para asegurarte de que el texto sea legible */
     height: 90vh;
@@ -15,10 +15,8 @@ header {
     align-items: center;
     text-align: center; 
     position: relative;
-    width: 100% 
+    width: 100%;
 }
-
- 
 
 .container.my-auto {
     flex: 1 0 auto;
@@ -31,6 +29,7 @@ main {
     justify-content: space-between;
     min-height: calc(100vh - 160px);
 }
+
 header {
     margin-bottom: 0;
 }
@@ -39,27 +38,230 @@ footer {
     margin-top: auto;
 }
 
-.p_bienvenido{
+.p_bienvenido {
     color: white;
 }
 
-/* styles.css */
-
-a.back{
+a.back {
     margin-bottom: 20px;
-    font-size: 1,5rem;
+    font-size: 1.5rem;
+}
+
+/* Estilo para comentarios */
+.comment h5 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.comment small {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.comment p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
 }
 
 .comment, .comment-form {
-    max-width: 300px;
-    
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .comment-form {
     margin-top: 20px;
 }
-.comments, .comentario, hr{
-    margin-left:-40px;
-    margin-top: 20px;
 
+.comments, .comentario, hr {
+    margin-top: 20px;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color:#5a6268;
+    border-color: #5a6268;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    text-align: center;
+    padding: 2rem;
+}
+
+.card-title {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.btn:hover {
+    color: #fff; 
+    background-color: #6c757d; 
+    border-color: #6c757d; 
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+form {
+    width: 100%;
+}
+
+form p {
+    margin-bottom: 1rem;
+}
+
+.btn-primary {
+    background-color: #545b62 !important;
+    border-color: #545b62;
+    color: white;
+}
+
+/* Estilos para las tarjetas de post */
+.post-card {
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.post-card-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.card-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    margin-bottom: 1.5rem;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.container {
+    margin-bottom: 2rem;
+}
+
+/* Estilos para el formulario de búsqueda */
+.titulo-busqueda-post {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-form .input-group {
+    display: flex;
+}
+
+.search-form .form-control {
+    margin-right: 0.5rem;
+    border-radius: 0.375rem 0 0 0.375rem;
+    box-shadow: none;
+    border-right: 0;
+}
+
+.search-form .btn {  
+    margin-left: 0.5rem;
+    box-shadow: none;
+}
+
+.search-form .form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+/* Estilo para la página de resultados de búsqueda */
+.titulo-post {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.resultados-busqueda {
+    margin-top: 2rem;
+}
+
+.resultados-busqueda .list-group {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.resultados-busqueda .list-group-item {
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Nuevos estilos para el formulario de creación de post */
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: center;
+    color: #545b62;
+}
+
+form textarea {
+    width: 100%; /* Hacer el input del body más ancho */
+    height: 200px; /* Ajustar la altura si es necesario */
+}
+
+.card-body {
+    padding: 2rem; /* Extra padding para el cuerpo de la tarjeta */
+}
+
+.card {
+    border-radius: 15px; /* Bordes redondeados para la tarjeta */
 }

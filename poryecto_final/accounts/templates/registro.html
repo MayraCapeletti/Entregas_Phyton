@@ -1,11 +1,24 @@
 {% extends 'padre.html' %}
+{% load crispy_forms_tags %}
 {% block bloque_header %} {% endblock %}
+
 {% block contenidoQueCambia %}
-  
-<form action="{% url 'Registrar' %}" method="post">{% csrf_token %}
-  {{formulario_registro.as_p}}
-  <button type="submit"> Registrar </button>
-</form>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Registro</h2>
+          <form action="{% url 'Registrar' %}" method="post" class="registration-form">
+            {% csrf_token %}
+            {{ formulario_registro|crispy }}
+            <button type="submit" class="btn btn-primary btn-block mt-4">Registrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock contenidoQueCambia %}
-  

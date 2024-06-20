@@ -1,12 +1,19 @@
 {% extends 'padre.html' %}
 {% load crispy_forms_tags %}
 {% block bloque_titulo %}Detalle de Post{% endblock %}
+{% block bloque_nav_items %}
+    <!-- Habilita modificación del post SÓLO para su autor -->
+    {% if request.user.is_authenticated and post.author == request.user %}
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ActualizaPost' post.id %}"><i class="bi bi-pencil"></i> Editar</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'EliminaPost' post.id %}"><i class="bi bi-trash"></i> Eliminar</a></li>
+    {% endif %}
+{% endblock bloque_nav_items %}
 {% block bloque_header %}
-    <header class="post" style="background-image: url('{{ post.image.url }}')">
+    <header class="post" style="background-image: url('{% if post.image %}{{ post.image.url }}{% else %}/path/to/default/image.jpg{% endif %}'); height: 400px; background-size: cover; background-position: center;">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="post-heading">
+                    <div class="post-heading text-white">
                         <h1>{{ post.title }}</h1>
                         <h2 class="subheading">{{ post.subtitle }}</h2>
                         <span class="meta">
@@ -25,29 +32,30 @@
         <div class="row">
             <div class="col-md-8">
                 <p class="lead">{{ post.body }}</p>
-                <a href="{% url 'ver_posts' %}" class= "back">Back</a>
-            </div>
+                <a href="{% url 'ver_posts' %}" class="btn btn-secondary mb-4">Back</a>
                 <hr>
-            <div class="comments">
-                <h3>Comentarios</h3>               
+                <h3 class="mb-4">Comentarios</h3>
+                <div class="comments mb-4">
                     {% for comment in post.comments.all %}
-                        <div class="comment mb-3">
-                            <h5>{{ comment.name }} <small class="text-muted">{{ comment.created_at }}</small></h5>
+                        <div class="comment mb-3 p-3 bg-light rounded">
+                            <h5 class="mb-1">{{ comment.name }}</h5>
+                            <small class="text-muted d-block mb-2">{{ comment.created_at }}</small>
                             <p>{{ comment.content }}</p>
                         </div>
                     {% empty %}
                         <p>No hay comentarios aún.</p>
                     {% endfor %}
-            </div>
+                </div>
                 <hr>
-            <div class="comentario">
                 {% if user.is_authenticated %}
-                <h3>Deja un comentario</h3>
-                <form method="post" class="comment-form">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary mt-2">Enviar comentario</button>
-                </form>
+                <div class="comentario">
+                    <h3 class="mb-4">Deja un comentario</h3>
+                    <form method="post" class="comment-form">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary mt-2">Enviar comentario</button>
+                    </form>
+                </div>
                 {% else %}
                 <p>Debes <a href="{% url 'Login' %}">iniciar sesión</a> para dejar un comentario.</p>
                 {% endif %}

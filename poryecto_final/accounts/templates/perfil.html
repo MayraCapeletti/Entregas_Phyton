@@ -1,4 +1,5 @@
 {% extends 'padre.html' %}
+{% load static %}
 {% block bloque_header %} {% endblock %}
 {% block bloque_titulo %}
  Perfil
@@ -9,10 +10,10 @@
         <div class="row p-3">
             <div class="col-lg-4">
                 <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                    {% if request.user.userextension.avatar %}
-                        <img class="img-fluid rounded-circle mb-3" src= "{{request.user.userextension.avatar.url}}"alt="Avatar"/>
+                    {% if request.user.avatar %}
+                        <img class="img-fluid rounded-circle mb-3" src="{{ request.user.avatar.imagen.url }}" alt="Avatar"/>
                     {% else %}
-                        <img class="img-fluid rounded-circle mb-3" src= "{% static 'assets/img/blank-profile.jpg'%}" alt="Sin avatar"/>
+                        <img class="img-fluid rounded-circle mb-3" src="{% static 'assets/img/blank-profile.jpg' %}" alt="Sin avatar"/>
                     {% endif %}
                 </div>
             </div>
@@ -35,28 +36,14 @@
                             <th scope="row">Apellido</th>
                             <td>{{ request.user.last_name }}</td>
                         </tr>
-                        <tr>
-                            <th scope="row" class="align-middle">Descripción</th>
-                            <td>
-                                {% if request.user.userextension.descripcion %}
-                                    {{ request.user.userextension.descripcion }}
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Link</th>
-                            <td>
-                                {% if request.user.userextension.link %}
-                                    <a href={{ request.user.userextension.link }}>
-                                        {{ request.user.userextension.link }}
-                                    </a>
-                                {% endif %}
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
+                <a href="{% url 'eliminar_cuenta' %}" class="btn btn-danger mt-3">Eliminar Cuenta</a>
+                {% if request.user.is_staff %}
+                    <a href="{% url 'listar_usuarios' %}" class="btn btn-primary mt-3">Administrar Usuarios</a>
+                {% endif %}
             </div>
         </div>
     </div>
 </section>
-{% endblock bloque_contenido %}
+{% endblock contenidoQueCambia %}

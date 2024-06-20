@@ -1,0 +1,39 @@
+{% extends 'padre.html' %}
+{% load crispy_forms_tags %}
+{% block contenidoQueCambia %}
+
+<div class="container mt-5">
+  <h2 class="mb-4">Agregar Avatar</h2>
+
+  {% if avatar %}
+    <div class="mb-4">
+      <h4>Avatar Actual:</h4>
+      <img src="{{ avatar.imagen.url }}" alt="Avatar de {{ request.user.username }}" class="img-thumbnail" style="max-width: 200px;">
+    </div>
+  {% endif %}
+
+  {% if messages %}
+    <div class="mb-3">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <form 
+    action="{% url 'AgregarAvatar' %}" 
+    method="post"
+    enctype="multipart/form-data"
+    class="form-group"
+  >
+    {% csrf_token %}
+
+    <div class="mb-3">
+      {{ avatar_form.as_p }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </form>
+</div>
+
+{% endblock contenidoQueCambia %}

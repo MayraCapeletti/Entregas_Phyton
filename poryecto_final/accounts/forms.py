@@ -1,7 +1,7 @@
 from django import forms
-
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm, UserCreationForm
 from django.contrib.auth.models import User
+from .models import Avatar
 
 class FormularioRegistro(UserCreationForm):
 
@@ -59,3 +59,8 @@ class FormularioCambiarPassword(PasswordChangeForm):
         model = User
         fields = ['old_password', 'new_password1', 'new_password2']
         help_texts = {k:'' for k in fields}
+  
+class AvatarForm(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['imagen']
