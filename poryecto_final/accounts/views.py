@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.urls import reverse_lazy
 from .models import Avatar
+from Post.models import Post
 
 def login_view(req):
   if req.method == 'POST':
@@ -21,11 +22,14 @@ def login_view(req):
 
       if user:
         login(req, user)
-        return render(req, "inicio.html", {"mensaje": f"Bienvenido {usuario}"})
+        messages.success(req, f"Bienvenido {usuario}")
+        return redirect('home')  # Redirige a la página de inicio
       else:
-        return render(req, "inicio.html", {"mensaje": "Datos erroneos"})   
+        messages.error(req, "Datos erróneos")
+        return redirect('Login')  # Redirige a la página de inicio de sesión    
     else:
-      return render(req, "inicio.html", {"mensaje": "Datos inválidos"}) 
+      messages.error(req, "Datos inválidos")
+      return redirect('Login')  # Redirige a la página de inicio de sesión 
   else:
     miFormulario = AuthenticationForm()
     return render(req, "login.html", {"miFormulario": miFormulario})
@@ -53,8 +57,11 @@ def ver_perfil(request):
     except Avatar.DoesNotExist:
         avatar = None
 
+    posts = Post.objects.filter(author=request.user)  # Obtener los posts del usuario
+
     context = {
         'avatar': avatar,
+        'posts': posts,  # Incluir los posts en el contexto
     }
     return render(request, 'perfil.html', context)
     
@@ -110,6 +117,12 @@ def cerrar_sesion(request):
 def agregar_avatar(request):
     avatar = Avatar.objects.filter(user=request.user).first()
     if request.method == 'POST':
+        if 'delete_avatar' in request.POST:
+            if avatar:
+                avatar.delete()
+                messages.success(request, "Avatar eliminado con éxito")
+            return redirect('ver_perfil')
+
         avatar_form = AvatarForm(request.POST, request.FILES)
         if avatar_form.is_valid():
             if avatar:
@@ -119,7 +132,7 @@ def agregar_avatar(request):
                 avatar = Avatar(user=request.user, imagen=avatar_form.cleaned_data['imagen'])
                 messages.success(request, "Avatar cargado con éxito")
             avatar.save()
-            return redirect('inicio')  # Ajusta 'inicio' a la URL de tu página de inicio
+            return redirect('ver_perfil')
         else:
             messages.error(request, "Datos inválidos")
     else:

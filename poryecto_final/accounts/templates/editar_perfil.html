@@ -1,9 +1,9 @@
 {% extends 'padre.html' %}
 {% load crispy_forms_tags %}
-{% block bloque_header %}{% endblock %}
-{% block bloque_titulo %}
-    Editar Perfil
-{% endblock bloque_titulo %}
+{% block bloque_titulo %} Editar Perfil {% endblock bloque_titulo %}
+{% block bloque_nav_items %}{{ block.super }}{% endblock bloque_nav_items %}
+{% block bloque_header %} {% endblock bloque_header %}
+
 {% block contenidoQueCambia %}
 <div class="container my-5">
     <h2 class="card-title text-center mb-4">Editar Perfil</h2>

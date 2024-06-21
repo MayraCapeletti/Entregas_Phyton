@@ -1,39 +1,48 @@
 {% extends 'padre.html' %}
+
 {% load crispy_forms_tags %}
+{% block bloque_nav_items %}{{ block.super }}{% endblock bloque_nav_items %}
+{% block bloque_header %} {% endblock bloque_header %}
 {% block contenidoQueCambia %}
 
 <div class="container mt-5">
-  <h2 class="mb-4">Agregar Avatar</h2>
+  <div class="text-center">
+    <h2 class="mb-4">Agregar Avatar</h2>
 
-  {% if avatar %}
-    <div class="mb-4">
-      <h4>Avatar Actual:</h4>
-      <img src="{{ avatar.imagen.url }}" alt="Avatar de {{ request.user.username }}" class="img-thumbnail" style="max-width: 200px;">
-    </div>
-  {% endif %}
+    {% if avatar %}
+      <div class="mb-4">
+        <h4>Avatar Actual:</h4>
+        <img src="{{ avatar.imagen.url }}" alt="Avatar de {{ request.user.username }}" class="img-thumbnail" style="max-width: 200px;">
+        <form action="{% url 'AgregarAvatar' %}" method="post" class="mt-3">
+          {% csrf_token %}
+          <button type="submit" name="delete_avatar" class="btn btn-danger btn-sm">Eliminar Avatar</button>
+        </form>
+      </div>
+    {% endif %}
 
-  {% if messages %}
-    <div class="mb-3">
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-      {% endfor %}
-    </div>
-  {% endif %}
+    {% if messages %}
+      <div class="mb-3">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
 
-  <form 
-    action="{% url 'AgregarAvatar' %}" 
-    method="post"
-    enctype="multipart/form-data"
-    class="form-group"
-  >
-    {% csrf_token %}
+    <form 
+      action="{% url 'AgregarAvatar' %}" 
+      method="post"
+      enctype="multipart/form-data"
+      class="form-group"
+    >
+      {% csrf_token %}
 
-    <div class="mb-3">
-      {{ avatar_form.as_p }}
-    </div>
+      <div class="mb-3">
+        {{ avatar_form.as_p }}
+      </div>
 
-    <button type="submit" class="btn btn-primary">Crear</button>
-  </form>
+      <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+  </div>
 </div>
 
 {% endblock contenidoQueCambia %}

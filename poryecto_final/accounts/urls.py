@@ -1,5 +1,6 @@
 from django.urls import path
 from accounts.views import *
+from Post.views import PostDetail
 
 urlpatterns = [
     path('login/', login_view, name='Login'),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('eliminar_cuenta/',eliminar_cuenta, name='eliminar_cuenta'),
     path('eliminar_cualquier_cuenta/<int:user_id>/', eliminar_cualquier_cuenta, name='eliminar_cualquier_cuenta'),
     path('listar_usuarios/', listar_usuarios, name='listar_usuarios'),
+    path('detalle-post/<pk>', PostDetail.as_view(), name='DetallePost'),
     ]

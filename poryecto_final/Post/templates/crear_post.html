@@ -9,6 +9,7 @@
 
 {% block bloque_nav_items %}
     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'CreaPost' %}">Nuevo Post</a></li>
+    {{ block.super }}
 {% endblock bloque_nav_items %}
 
 {% block contenidoQueCambia %}

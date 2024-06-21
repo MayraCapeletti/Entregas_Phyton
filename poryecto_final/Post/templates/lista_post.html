@@ -6,6 +6,7 @@
     {% if request.user.is_authenticated and post.autor == request.user %}
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ActualizaPost' post.id %}"><i class="bi bi-pencil"></i> Editar</a></li>
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'EliminaPost' post.id %}"><i class="bi bi-trash"></i> Eliminar</a></li>
+        {{ block.super }}
     {% endif %}
 {% endblock bloque_nav_items %}
 

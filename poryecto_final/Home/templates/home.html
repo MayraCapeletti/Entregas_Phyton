@@ -1,12 +1,13 @@
 {% extends 'padre.html' %}
 
 {% block bloque_titulo %}Inicio{% endblock %}
+{% block bloque_nav_items %}{{ block.super }}{% endblock bloque_nav_items %}
 
 {% block bloque_header %}
 <header >
     
     <h1 class="display-5 fw-bolder text-white mb-2">Bienvenidos</h1>   
 </header> 
-{% endblock %}
+{% endblock bloque_header  %}
 
 

@@ -2,11 +2,12 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
-
 header {
-    background: url(../assets/img/computer-4484282_1280.jpg) no-repeat;
-    background-size: 100%;
+    background: url(../assets/img/portada.jpg) no-repeat;
+    background-size: cover;
     color: white; /* Para asegurarte de que el texto sea legible */
     height: 90vh;
     display: flex;
@@ -15,9 +16,17 @@ header {
     align-items: center;
     text-align: center; 
     position: relative;
-    width: 100%;
+    width: 100%;  
 }
-
+.lead {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+h1.display-4 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 .container.my-auto {
     flex: 1 0 auto;
     padding: 0;
@@ -103,11 +112,16 @@ a.back {
     border: 1px solid #ddd;
     border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card-body {
     text-align: center;
     padding: 2rem;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .card-title {
@@ -258,10 +272,35 @@ form textarea {
     height: 200px; /* Ajustar la altura si es necesario */
 }
 
-.card-body {
-    padding: 2rem; /* Extra padding para el cuerpo de la tarjeta */
+
+
+/* Estilo de agregar avatar*/
+
+.text-center {
+  text-align: center;
 }
 
-.card {
-    border-radius: 15px; /* Bordes redondeados para la tarjeta */
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+.form-group {
+  width: 100%;
+  max-width: 500px;
+}
+
+.img-thumbnail {
+  margin: 0 auto;
+}
+.img-circle-large {
+    width: 200px; /* Cambiar el tamaño a 200px */
+    height: 200px; /* Cambiar el tamaño a 200px */
+    border-radius: 50%;
+    object-fit: cover;
+}
+.datos{
+    margin-right: 5rem;
 }

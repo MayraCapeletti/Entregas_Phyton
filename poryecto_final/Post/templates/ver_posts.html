@@ -1,13 +1,14 @@
 {% extends 'padre.html' %}
 
-{% block bloque_header %} {% endblock %}
-
 {% block bloque_nav_items %}
     {% if request.user.is_authenticated and request.user.is_staff %}
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'CreaPost' %}"><i class="bi bi-journal-richtext"></i> Nuevo</a></li>
     {% endif %}
     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'busqueda_post' %}"><i class="bi bi-search"></i> Buscar</a></li>
+    {{ block.super }}
 {% endblock bloque_nav_items %}
+
+{% block bloque_header %} {% endblock %}
 
 {% block contenidoQueCambia %}
     <div class="container mt-5">

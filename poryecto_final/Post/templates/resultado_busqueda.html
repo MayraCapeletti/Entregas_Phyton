@@ -1,6 +1,9 @@
 {% extends 'padre.html' %}
 
 {% block bloque_titulo %}Resultados de la búsqueda{% endblock %}
+{% block bloque_nav_items %}
+{{ block.super }}
+{% endblock bloque_nav_items %}
 
 {% block bloque_header %}
 <!-- No header content for search results page -->
