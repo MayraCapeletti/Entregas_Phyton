@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'accounts',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'mensajeria'
 ]
 
 MIDDLEWARE = [

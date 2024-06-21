@@ -1,0 +1,45 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block bloque_titulo %}
+     Iniciar Chat
+{% endblock bloque_titulo %}
+
+{% block bloque_nav_items_chat %}
+    {{ block.super }}
+{% endblock bloque_nav_items_chat %}
+
+{% block bloque_header %}
+    
+{% endblock bloque_header %}
+
+{% block contenidoQueCambia %}
+{% if request.user == chat.user_chat_1 %}
+        <h3 class="post-subtitle">
+            {% if chat.user_chat_2.get_full_name %}
+                Estás a punto de eliminar el chat con {{ chat.user_chat_2.get_full_name }}
+            {% else %}
+                Estás a punto de eliminar el chat con {{ chat.user_chat_2.username }}
+            {% endif %}
+        </h3>
+    {% else %}
+        <h3 class="post-subtitle">
+            {% if chat.user_chat_1.get_full_name %}
+                Estás a punto de eliminar el chat con {{ chat.user_chat_1.get_full_name }}
+            {% else %}
+                Estás a punto de eliminar el chat con {{ chat.user_chat_1.username }}
+            {% endif %}
+        </h3>
+    {% endif %}
+    <section class="bg-light">
+        <div class="container px-4 px-lg-5">
+            <form class="p-3 p-lg-4 lead fst-italic" method="POST">
+                {% csrf_token %}
+                <p>¿Desea eliminar la conversación?</p>
+                <div>
+                    <button class="btn btn-outline-primary fst-italic"><i class="bi bi-trash"></i> Eliminar</button>
+                    <a class="btn btn-outline-danger fst-italic" href="{% url 'ver_chat' chat.id %}" role="button"><i class="bi bi-x-circle"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock contenidoQueCambia %}

@@ -304,3 +304,89 @@ form textarea {
 .datos{
     margin-right: 5rem;
 }
+
+/*MENSAJERIA*/
+.message-container {
+    overflow-y: scroll;
+    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+}
+
+.message-container .table {
+    margin-bottom: 0; /* Evita el margen inferior de la tabla */
+}
+
+.received-message {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.sent-message {
+    background-color: #cce5ff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.received-date {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: right;
+}
+
+.sent-date {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: right;
+}
+
+.message-input {
+    margin-top: 20px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.button-group .btn {
+    margin-left: 10px;
+}
+.chats-container {
+    overflow-y: scroll;
+    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+}
+
+.chats-container .table {
+    margin-bottom: 0; /* Evita el margen inferior de la tabla */
+}
+
+.avatar-column {
+    width: 20%; /* Ajusta el ancho de la columna de avatar */
+}
+
+.avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.img-avatar {
+    border-radius: 50%;
+}
+
+.chat-link {
+    text-decoration: none;
+    color: #333; /* Color del texto del nombre del chat */
+}
+
+.chat-name {
+    margin-bottom: 0.5rem; /* Espaciado inferior del nombre del chat */
+}
+
+.post-subtitle.lead {
+    margin-top: 1rem; /* Espaciado superior cuando no hay conversaciones */
+}

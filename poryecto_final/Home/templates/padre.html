@@ -30,7 +30,14 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_home_active %}{% endblock bloque_home_active %}" href="{% url 'home' %}"><i class="bi bi-house-door"></i> Inicio</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_about_active %}{% endblock bloque_about_active %}" href="{% url 'about' %}"><i class="bi bi-house-door"></i> About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_posts_active %}{% endblock bloque_posts_active %}" href="{% url 'ver_posts' %}"><i class="bi bi-journals"></i> Posts</a></li>
-                        {% block bloque_nav_items %}
+                        {% block bloque_nav_items %} 
+
+                         <!-- Funcionalidades de Chat (Usuario Logueado) -->
+                         {% if request.user.is_authenticated and not request.user.is_staff %}
+                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_chat_active %}{% endblock bloque_chat_active %}" href={% url 'ver_chats' %}><i class="bi bi-chat"></i> Chat</a></li>
+
+                         {% block bloque_nav_items_chat %}{% endblock bloque_nav_items_chat %}
+                     {% endif %}
                             <li class="nav-item">
                                 {% if request.user.is_authenticated %}
                                     <!-- Usuario Logueado (Navbar-item y Dropdown) -->
