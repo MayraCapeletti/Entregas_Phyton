@@ -4,6 +4,7 @@ Video Demostrativo
 Puedes ver un video demostrativo del proyecto en el siguiente enlace:[ Video Demostrativo](https://youtu.be/GvF0slNtZvM?si=3N5uNRt-ZHf8wiGI4)
 
 Blog de Reseñas de Libros
+
 Este proyecto es un blog donde los usuarios pueden leer y comentar reseñas de libros. Los usuarios pueden registrarse, iniciar sesión y acceder a funciones adicionales como comentar en los posts y chatear con otros usuarios. También pueden editar su perfil y agregar un avatar. Solo los miembros del staff pueden crear nuevos posts y solo el dueño de un post puede editarlo o eliminarlo.
 
 Características
