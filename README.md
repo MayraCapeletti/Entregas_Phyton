@@ -10,9 +10,13 @@ Este proyecto es un blog donde los usuarios pueden leer y comentar reseñas de l
 Características
 
 -Lectura de Reseñas: Los usuarios pueden leer reseñas de libros publicadas por el staff.
+
 -Comentarios: Los usuarios registrados pueden comentar en los posts.
+
 -Chat entre Usuarios: Los usuarios registrados pueden chatear con otros usuarios.
+
 -Perfil de Usuario: Los usuarios pueden editar su perfil, agregar un avatar, cambiar la contraseña y eliminar su cuenta.
+
 -Administración de Posts: Solo los miembros del staff pueden crear nuevos posts y solo el dueño del post puede editarlo o eliminarlo.
 
 Tecnologías Utilizadas
