@@ -48,6 +48,7 @@
                     <a href="{% url 'listar_usuarios' %}" class="btn btn-primary mt-3">Administrar Usuarios</a>
                 {% endif %}
             </div>
+            {% if request.user.is_staff %}
             <div class="col-lg-8 mt-4" >
                 <h2 class="mb-3">Mis Posts</h2>
                 <ul class="list-group">
@@ -59,6 +60,7 @@
                     {% endfor %}
                 </ul>
             </div>
+            {% endif %}
         </div>
     </div>
 </section>

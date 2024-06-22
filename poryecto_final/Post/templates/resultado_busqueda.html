@@ -2,6 +2,7 @@
 
 {% block bloque_titulo %}Resultados de la búsqueda{% endblock %}
 {% block bloque_nav_items %}
+<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'busqueda_post' %}"><i class="bi bi-search"></i> Buscar</a></li>
 {{ block.super }}
 {% endblock bloque_nav_items %}
 

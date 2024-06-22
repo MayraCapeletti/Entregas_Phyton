@@ -5,9 +5,10 @@
     <!-- Habilita modificación del post SÓLO para su autor -->
     {% if request.user.is_authenticated and post.author == request.user %}
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ActualizaPost' post.id %}"><i class="bi bi-pencil"></i> Editar</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'EliminaPost' post.id %}"><i class="bi bi-trash"></i> Eliminar</a></li>
-        {{ block.super }}
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'EliminaPost' post.id %}"><i class="bi bi-trash"></i> Eliminar</a></li>    
     {% endif %}
+    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'busqueda_post' %}"><i class="bi bi-search"></i> Buscar</a></li>
+        {{ block.super }}
 {% endblock bloque_nav_items %}
 {% block bloque_header %}
     <header class="post" style="background-image: url('{% if post.image %}{{ post.image.url }}{% else %}/path/to/default/image.jpg{% endif %}'); height: 400px; background-size: cover; background-position: center;">

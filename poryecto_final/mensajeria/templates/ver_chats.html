@@ -5,14 +5,19 @@
     Ver Chats
 {% endblock bloque_titulo %}
 
+{% block bloque_nav_items %}
+{{ block.super }}
+
+{% endblock bloque_nav_items %}
+
 {% block bloque_nav_items_chat %}
-    <li class="nav-item">
-        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'nuevo_chat' %}">
-            <i class="bi bi-chat-text"></i> Nuevo Chat
-        </a>
-    </li>
-    {{ block.super }}
-{% endblock bloque_nav_items_chat %}
+            <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'nuevo_chat' %}">
+                    <i class="bi bi-chat-text"></i> Nuevo Chat
+                </a>
+            </li>    
+    {% endblock bloque_nav_items_chat %}
+
 
 {% block contenidoQueCambia %}
     <section class="bg-light">
